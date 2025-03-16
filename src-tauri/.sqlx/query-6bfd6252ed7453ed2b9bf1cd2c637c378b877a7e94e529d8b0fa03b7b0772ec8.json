@@ -1,0 +1,26 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT key_data, nonce FROM encryption_keys WHERE user_id = ? ORDER BY created_at DESC LIMIT 1",
+  "describe": {
+    "columns": [
+      {
+        "name": "key_data",
+        "ordinal": 0,
+        "type_info": "Blob"
+      },
+      {
+        "name": "nonce",
+        "ordinal": 1,
+        "type_info": "Blob"
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "6bfd6252ed7453ed2b9bf1cd2c637c378b877a7e94e529d8b0fa03b7b0772ec8"
+}

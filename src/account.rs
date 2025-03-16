@@ -1,0 +1,1 @@
+let device_id = app_handle.config().identifier.clone(); 
