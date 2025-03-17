@@ -1,7 +1,6 @@
 use sqlx::SqlitePool;
 use uuid::Uuid;
 use std::time::{SystemTime, UNIX_EPOCH};
-use chrono::{DateTime};
 use crate::entity::clipboard_item::{ClipboardItem, ClipboardItemRequest, ClipboardItemUpdateRequest};
 use crate::repository::clipboard_repository::ClipboardRepository;
 use crate::error::AppError;
@@ -25,11 +24,11 @@ impl ClipboardService {
         user_id: &str, 
         request: &ClipboardItemRequest
     ) -> Result<ClipboardItem, AppError> {
-        let id = Uuid::new_v4().to_string();
-        let now = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .unwrap()
-            .as_secs() as i64;
+        // let id = Uuid::new_v4().to_string();
+        // let now = SystemTime::now()
+        //     .duration_since(UNIX_EPOCH)
+        //     .unwrap()
+        //     .as_secs() as i64;
         
         let mut content = request.content.clone();
         let mut encrypted = false;
@@ -69,11 +68,6 @@ impl ClipboardService {
         // 检查项目是否存在
         let existing = ClipboardRepository::find_by_id(pool, &request.id, user_id).await?
             .ok_or_else(|| AppError::NotFound("剪贴板项目不存在".to_string()))?;
-        
-        let now = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .unwrap()
-            .as_secs() as i64;
         
         let mut content = request.content.clone();
         let mut encrypted = false;
