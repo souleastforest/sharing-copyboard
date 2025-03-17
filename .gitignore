@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 .sqlx
+src-tauri/sharing-copyboard.db
